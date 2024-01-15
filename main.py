@@ -3,6 +3,8 @@ import dotenv
 
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
+
 
 dotenv.load_dotenv()
 URL = os.getenv("URL")
@@ -13,6 +15,19 @@ app = FastAPI(
     version="0.1.0",
     summary="API for getting Proinmo Resources, such as images, videos, etc.",
 )
+
+origins = [
+    "*"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
+
 
 app.mount("/img/1", StaticFiles(directory="img/caes-parqueindustrial"), name="img/1")
 app.mount("/img/2", StaticFiles(directory="img/logistica-amati"), name="img/2")
