@@ -2,7 +2,6 @@ import os
 import dotenv
 
 from fastapi import FastAPI
-from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 dotenv.load_dotenv()
