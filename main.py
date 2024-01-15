@@ -1,7 +1,11 @@
 import os
+import dotenv
 
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
+
+dotenv.load_dotenv()
+URL = os.getenv("URL")
 
 app = FastAPI(
     title="Proinmo Resources",
@@ -16,17 +20,31 @@ async def root():
     return {"message": "Service is up and running"}
 
 
-@app.get("/img/4/{img_id}")
-async def get_caes_f2yf3(img_id: str):
-    print(img_id)
-    file_path = os.path.join("img/caes-f2yf3/", img_id)
-    return FileResponse(file_path)
-
-
 @app.get("/img/1/{img_id}")
 async def get_caes_parqueindustrial(img_id: str):
     print(img_id)
     file_path = os.path.join("img/caes-parqueindustrial/", img_id)
+    return FileResponse(file_path)
+
+
+@app.get("/img/2/{img_id}")
+async def get_logistica_amati(img_id: str):
+    print(img_id)
+    file_path = os.path.join("img/logistica-amati/", img_id)
+    return FileResponse(file_path)
+
+
+@app.get("/img/3/{img_id}")
+async def get_industrial_las_tunas_ofibodegas(img_id: str):
+    print(img_id)
+    file_path = os.path.join("img/industrial las tunas-ofibodegas/", img_id)
+    return FileResponse(file_path)
+
+
+@app.get("/img/4/{img_id}")
+async def get_caes_f2yf3(img_id: str):
+    print(img_id)
+    file_path = os.path.join("img/caes-f2yf3/", img_id)
     return FileResponse(file_path)
 
 
@@ -41,13 +59,6 @@ async def get_ind_campestre_bodegas(img_id: str):
 async def get_ind_campestre2(img_id: str):
     print(img_id)
     file_path = os.path.join("img/ind-campestre2/", img_id)
-    return FileResponse(file_path)
-
-
-@app.get("/img/3/{img_id}")
-async def get_industrial_las_tunas_ofibodegas(img_id: str):
-    print(img_id)
-    file_path = os.path.join("img/industrial las tunas-ofibodegas/", img_id)
     return FileResponse(file_path)
 
 
@@ -90,13 +101,6 @@ async def get_lastunas_ofibodegas(img_id: str):
 async def get_loginaranjo(img_id: str):
     print(img_id)
     file_path = os.path.join("img/loginaranjo/", img_id)
-    return FileResponse(file_path)
-
-
-@app.get("/img/2/{img_id}")
-async def get_logistica_amati(img_id: str):
-    print(img_id)
-    file_path = os.path.join("img/logistica-amati/", img_id)
     return FileResponse(file_path)
 
 
