@@ -3,6 +3,7 @@ import dotenv
 
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
 dotenv.load_dotenv()
 URL = os.getenv("URL")
@@ -14,13 +15,29 @@ app = FastAPI(
     summary="API for getting Proinmo Resources, such as images, videos, etc.",
 )
 
+app.mount("/img/1", StaticFiles(directory="img/caes-parqueindustrial"), name="img/1")
+app.mount("/img/2", StaticFiles(directory="img/logistica-amati"), name="img/2")
+app.mount("/img/3", StaticFiles(directory="img/industrial las tunas-ofibodegas"), name="img/3")
+app.mount("/img/4", StaticFiles(directory="img/caes-f2yf3"), name="img/4")
+app.mount("/img/5", StaticFiles(directory="img/ind-campestre-bodegas"), name="img/5")
+app.mount("/img/6", StaticFiles(directory="img/ind-campestre2"), name="img/6")
+app.mount("/img/7", StaticFiles(directory="img/industrial-amatitlan"), name="img/7")
+app.mount("/img/8", StaticFiles(directory="img/industrial-naranjo"), name="img/8")
+app.mount("/img/9", StaticFiles(directory="img/industrial-palin"), name="img/9")
+app.mount("/img/10", StaticFiles(directory="img/industrialcampestre-comercial"), name="img/10")
+app.mount("/img/11", StaticFiles(directory="img/lastunas-ofibodegas"), name="img/11")
+app.mount("/img/12", StaticFiles(directory="img/loginaranjo"), name="img/12")
+app.mount("/img/13", StaticFiles(directory="img/Logistica-SantaElena"), name="img/13")
+app.mount("/img/14", StaticFiles(directory="img/trayectoria-ideacentral"), name="img/14")
+app.mount("/img/15", StaticFiles(directory="img/tunas-5,6,7"), name="img/15")
+
 
 @app.get("/")
 async def root():
     return {"message": "Service is up and running"}
 
 
-@app.get("/img/1")
+@app.get("/list/1")
 async def get_caes_parqueindustrial_images():
     """
     Lista de imagenes de caes-parqueindustrial
@@ -35,18 +52,7 @@ async def get_caes_parqueindustrial_images():
     return {"images": urls}
 
 
-@app.get("/img/1/{img_id}")
-async def get_caes_parqueindustrial(img_id: str):
-    """
-    Obtiene una imagen de caes-parqueindustrial
-    :param img_id: Nombre de la imagen
-    :return: Imagen requerida de caes-parqueindustrial
-    """
-    file_path = os.path.join("img/caes-parqueindustrial/", img_id)
-    return FileResponse(file_path)
-
-
-@app.get("/img/2")
+@app.get("/list/2")
 async def get_logistica_amati_images():
     """
     Lista de imagenes de logistica-amati
@@ -61,18 +67,7 @@ async def get_logistica_amati_images():
     return {"images": urls}
 
 
-@app.get("/img/2/{img_id}")
-async def get_logistica_amati(img_id: str):
-    """
-    Obtiene una imagen de logistica-amati
-    :param img_id: Nombre de la imagen
-    :return: Imagen requerida de logistica-amati
-    """
-    file_path = os.path.join("img/logistica-amati/", img_id)
-    return FileResponse(file_path)
-
-
-@app.get("/img/3")
+@app.get("/list/3")
 async def get_industrial_las_tunas_ofibodegas_images():
     """
     Lista de imagenes de industrial las tunas-ofibodegas
@@ -87,18 +82,7 @@ async def get_industrial_las_tunas_ofibodegas_images():
     return {"images": urls}
 
 
-@app.get("/img/3/{img_id}")
-async def get_industrial_las_tunas_ofibodegas(img_id: str):
-    """
-    Obtiene una imagen de industrial las tunas-ofibodegas
-    :param img_id: Nombre de la imagen
-    :return: Imagen requerida de industrial las tunas-ofibodegas
-    """
-    file_path = os.path.join("img/industrial las tunas-ofibodegas/", img_id)
-    return FileResponse(file_path)
-
-
-@app.get("/img/4")
+@app.get("/list/4")
 async def get_caes_f2yf3_images():
     """
     Lista de imagenes de caes-f2yf3
@@ -113,18 +97,7 @@ async def get_caes_f2yf3_images():
     return {"images": urls}
 
 
-@app.get("/img/4/{img_id}")
-async def get_caes_f2yf3(img_id: str):
-    """
-    Obtiene una imagen de caes-f2yf3
-    :param img_id: Nombre de la imagen
-    :return: Imagen requerida de caes-f2yf3
-    """
-    file_path = os.path.join("img/caes-f2yf3/", img_id)
-    return FileResponse(file_path)
-
-
-@app.get("/img/5")
+@app.get("/list/5")
 async def get_ind_campestre_bodegas_images():
     """
     Lista de imagenes de ind-campestre-bodegas
@@ -139,18 +112,7 @@ async def get_ind_campestre_bodegas_images():
     return {"images": urls}
 
 
-@app.get("/img/5/{img_id}")
-async def get_ind_campestre_bodegas(img_id: str):
-    """
-    Obtiene una imagen de ind-campestre-bodegas
-    :param img_id: Nombre de la imagen
-    :return: Imagen requerida de ind-campestre-bodegas
-    """
-    file_path = os.path.join("img/ind-campestre-bodegas/", img_id)
-    return FileResponse(file_path)
-
-
-@app.get("/img/6")
+@app.get("/list/6")
 async def get_ind_campestre2_images():
     """
     Lista de imagenes de ind-campestre2
@@ -165,18 +127,7 @@ async def get_ind_campestre2_images():
     return {"images": urls}
 
 
-@app.get("/img/6/{img_id}")
-async def get_ind_campestre2(img_id: str):
-    """
-    Obtiene una imagen de ind-campestre2
-    :param img_id: Nombre de la imagen
-    :return: Imagen requerida de ind-campestre2
-    """
-    file_path = os.path.join("img/ind-campestre2/", img_id)
-    return FileResponse(file_path)
-
-
-@app.get("/img/7")
+@app.get("/list/7")
 async def get_industrial_amatitlan_images():
     """
     Lista de imagenes de industrial-amatitlan
@@ -191,18 +142,7 @@ async def get_industrial_amatitlan_images():
     return {"images": urls}
 
 
-@app.get("/img/7/{img_id}")
-async def get_industrial_amatitlan(img_id: str):
-    """
-    Obtiene una imagen de industrial-amatitlan
-    :param img_id: Nombre de la imagen
-    :return: Imagen requerida de industrial-amatitlan
-    """
-    file_path = os.path.join("img/industrial-amatitlan/", img_id)
-    return FileResponse(file_path)
-
-
-@app.get("/img/8")
+@app.get("/list/8")
 async def get_industrial_naranjo_images():
     """
     Lista de imagenes de industrial-naranjo
@@ -217,18 +157,7 @@ async def get_industrial_naranjo_images():
     return {"images": urls}
 
 
-@app.get("/img/8/{img_id}")
-async def get_industrial_naranjo(img_id: str):
-    """
-    Obtiene una imagen de industrial-naranjo
-    :param img_id: Nombre de la imagen
-    :return: Imagen requerida de industrial-naranjo
-    """
-    file_path = os.path.join("img/industrial-naranjo/", img_id)
-    return FileResponse(file_path)
-
-
-@app.get("/img/9")
+@app.get("/list/9")
 async def get_industrial_palin_images():
     """
     Lista de imagenes de industrial-palin
@@ -243,18 +172,7 @@ async def get_industrial_palin_images():
     return {"images": urls}
 
 
-@app.get("/img/9/{img_id}")
-async def get_industrial_palin(img_id: str):
-    """
-    Obtiene una imagen de industrial-palin
-    :param img_id: Nombre de la imagen
-    :return: Imagen requerida de industrial-palin
-    """
-    file_path = os.path.join("img/industrial-palin/", img_id)
-    return FileResponse(file_path)
-
-
-@app.get("/img/10")
+@app.get("/list/10")
 async def get_industrialcampestre_comercial_images():
     """
     Lista de imagenes de industrialcampestre-comercial
@@ -269,18 +187,7 @@ async def get_industrialcampestre_comercial_images():
     return {"images": urls}
 
 
-@app.get("/img/10/{img_id}")
-async def get_industrialcampestre_comercial(img_id: str):
-    """
-    Obtiene una imagen de industrialcampestre-comercial
-    :param img_id: Nombre de la imagen
-    :return: Imagen requerida de industrialcampestre-comercial
-    """
-    file_path = os.path.join("img/industrialcampestre-comercial/", img_id)
-    return FileResponse(file_path)
-
-
-@app.get("/img/11")
+@app.get("/list/11")
 async def get_lastunas_ofibodegas_images():
     """
     Lista de imagenes de lastunas-ofibodegas
@@ -295,18 +202,7 @@ async def get_lastunas_ofibodegas_images():
     return {"images": urls}
 
 
-@app.get("/img/11/{img_id}")
-async def get_lastunas_ofibodegas(img_id: str):
-    """
-    Obtiene una imagen de lastunas-ofibodegas
-    :param img_id: Nombre de la imagen
-    :return: Imagen requerida de lastunas-ofibodegas
-    """
-    file_path = os.path.join("img/lastunas-ofibodegas/", img_id)
-    return FileResponse(file_path)
-
-
-@app.get("/img/12")
+@app.get("/list/12")
 async def get_loginaranjo_images():
     """
     Lista de imagenes de loginaranjo
@@ -321,18 +217,7 @@ async def get_loginaranjo_images():
     return {"images": urls}
 
 
-@app.get("/img/12/{img_id}")
-async def get_loginaranjo(img_id: str):
-    """
-    Obtiene una imagen de loginaranjo
-    :param img_id: Nombre de la imagen
-    :return: Imagen requerida de loginaranjo
-    """
-    file_path = os.path.join("img/loginaranjo/", img_id)
-    return FileResponse(file_path)
-
-
-@app.get("/img/13")
+@app.get("/list/13")
 async def get_Logistica_SantaElena_images():
     """
     Lista de imagenes de Logistica-SantaElena
@@ -347,18 +232,7 @@ async def get_Logistica_SantaElena_images():
     return {"images": urls}
 
 
-@app.get("/img/13/{img_id}")
-async def get_Logistica_SantaElena(img_id: str):
-    """
-    Obtiene una imagen de Logistica-SantaElena
-    :param img_id: Nombre de la imagen
-    :return: Imagen requerida de Logistica-SantaElena
-    """
-    file_path = os.path.join("img/Logistica-SantaElena/", img_id)
-    return FileResponse(file_path)
-
-
-@app.get("/img/14")
+@app.get("/list/14")
 async def get_trayectoria_ideacentral_images():
     """
     Lista de imagenes de trayectoria-ideacentral
@@ -373,18 +247,7 @@ async def get_trayectoria_ideacentral_images():
     return {"images": urls}
 
 
-@app.get("/img/14/{img_id}")
-async def get_trayectoria_ideacentral(img_id: str):
-    """
-    Obtiene una imagen de trayectoria-ideacentral
-    :param img_id: Nombre de la imagen
-    :return: Imagen requerida de trayectoria-ideacentral
-    """
-    file_path = os.path.join("img/trayectoria-ideacentral/", img_id)
-    return FileResponse(file_path)
-
-
-@app.get("/img/15")
+@app.get("/list/15")
 async def get_tunas_5_6_7_images():
     """
     Lista de imagenes de tunas-5,6,7
@@ -397,14 +260,3 @@ async def get_tunas_5_6_7_images():
         urls.append(URL + "img/15/" + f)
 
     return {"images": urls}
-
-
-@app.get("/img/15/{img_id}")
-async def get_tunas_5_6_7(img_id: str):
-    """
-    Obtiene una imagen de tunas-5,6,7
-    :param img_id: Nombre de la imagen
-    :return: Imagen requerida de tunas-5,6,7
-    """
-    file_path = os.path.join("img/tunas-5,6,7/", img_id)
-    return FileResponse(file_path)
